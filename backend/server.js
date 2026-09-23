@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 
 const authRoutes = require("./authRoutes");
 const jobRoutes = require("./routes/jobRoutes");
-const Job = require("./models/job");
+const Job = require("./models/Job");
 
 const app = express();
 
@@ -22,15 +22,7 @@ connectDB();
 // MIDDLEWARE
 // ==========================================
 
-app.use(cors({
-    origin: [
-        "https://jobtrack-88e67.web.app",
-        "https://jobtrack-88e67.firebaseapp.com"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
+app.use(cors());
 app.use(express.json());
 
 
@@ -96,10 +88,6 @@ app.get("/api/jobs/public-stats", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-if (require.main === module) {
-    app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
-    });
-}
-
-module.exports = app;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+}); 

@@ -161,7 +161,7 @@ if (jobForm) {
     try {
 
         const response = await fetch(
-            `https://jobtrack-6e1ojxq27-jobtrack3.vercel.app/api/jobs/${editingJobId}`,
+            `http://localhost:5000/api/jobs/${editingJobId}`,
             {
                 method: "PUT",
                 headers: {
@@ -604,7 +604,7 @@ async function deleteJob(id) {
     try {
 
         const response = await fetch(
-            `https://jobtrack-6e1ojxq27-jobtrack3.vercel.app/api/jobs/${id}`,
+            `http://localhost:5000/api/jobs/${id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -880,7 +880,7 @@ async function addJobToBackend(jobData) {
     try {
 
         const response = await fetch(
-            "https://jobtrack-6e1ojxq27-jobtrack3.vercel.app/api/jobs",
+            "http://localhost:5000/api/jobs",
             {
                 method: "POST",
 
@@ -932,7 +932,7 @@ async function loadJobsFromBackend() {
     try {
 
         const response = await fetch(
-            "https://jobtrack-6e1ojxq27-jobtrack3.vercel.app/api/jobs",
+            "http://localhost:5000/api/jobs",
             {
                 method: "GET",
 
