@@ -45,7 +45,7 @@ if (registerForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/register",
+                "https://jobtrack-kohl.vercel.app/api/auth/register",
                 {
                     method: "POST",
 
@@ -137,7 +137,7 @@ if (loginForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                "https://jobtrack-kohl.vercel.app/api/auth/login",
                 {
                     method: "POST",
 
@@ -228,7 +228,7 @@ if (forgotPasswordForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/forgot-password",
+                "https://jobtrack-kohl.vercel.app/api/auth/forgot-password",
                 {
                     method: "POST",
 
@@ -333,7 +333,7 @@ if (resetPasswordForm) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/reset-password",
+                "https://jobtrack-kohl.vercel.app/api/auth/reset-password",
                 {
                     method: "POST",
 
