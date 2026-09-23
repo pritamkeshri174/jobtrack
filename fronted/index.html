@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobTrack - Job Application Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="favicon.ico.png" href="favicon.ico.png">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <span>Job</span>Track
+        </div>
+
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🚀 Smart Job Application Tracker
+            </div>
+
+            <h1>
+                Track Your Career Journey
+                <span>With JobTrack</span>
+            </h1>
+
+            <p>
+                Manage your job applications, interviews and career
+                opportunities from one simple dashboard.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="register.html" class="btn primary">
+                    Get Started →
+                </a>
+
+                <a href="login.html" class="btn secondary">
+                    Login
+                </a>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">
+                    <strong>📊</strong>
+                    <p>Track Applications</p>
+                </div>
+
+                <div class="feature">
+                    <strong>🎯</strong>
+                    <p>Manage Interviews</p>
+                </div>
+
+                <div class="feature">
+                    <strong>📈</strong>
+                    <p>Monitor Progress</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="card-header">
+                <div>
+                    <small>Applications</small>
+                    <h2>20</h2>
+                </div>
+
+                <span class="chart-icon">📈</span>
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+
+           <div class="stats">
+
+    <div class="stat-item">
+        <div class="stat-icon">📨</div>
+        <div>
+            <span>Applied</span>
+            <strong>15</strong>
+        </div>
+    </div>
+
+    <div class="stat-item">
+        <div class="stat-icon">🎯</div>
+        <div>
+            <span>Interview</span>
+            <strong>6</strong>
+        </div>
+    </div>
+
+    <div class="stat-item">
+        <div class="stat-icon">🏆</div>
+        <div>
+            <span>Selected</span>
+            <strong>3</strong>
+        </div>
+    </div>
+
+    <div class="stat-item">
+        <div class="stat-icon">👥</div>
+        <div>
+            <span>Total Users</span>
+            <strong id="totalUsers">30</strong>
+        </div>
+    </div>
+
+</div>
+
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+
+        <h2>Everything You Need</h2>
+
+        <p class="section-subtitle">
+            Keep your entire job search organized in one place.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+                <div class="icon">📝</div>
+                <h3>Easy Application Tracking</h3>
+                <p>
+                    Add and manage all your job applications
+                    with important details.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon">🔍</div>
+                <h3>Search & Filter</h3>
+                <p>
+                    Quickly find applications by company,
+                    position or status.
+                </p>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon">📊</div>
+                <h3>Career Dashboard</h3>
+                <p>
+                    Get a clear overview of your job search
+                    progress.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 JobTrack. Built for career growth 🚀
+        </p>
+    </footer>
+    <script>
+    async function loadStats() {
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/jobs/public-stats"
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error("Stats Error:", data);
+                return;
+            }
+
+            // Applications
+            document.querySelector(".card-header h2").textContent =
+                data.total;
+
+            // Applied
+            const statItems =
+                document.querySelectorAll(".stat-item");
+
+            statItems[0].querySelector("strong").textContent =
+                data.applied;
+
+            // Interview
+            statItems[1].querySelector("strong").textContent =
+                data.interview;
+
+            // Selected
+            statItems[2].querySelector("strong").textContent =
+                data.selected;
+
+        } catch (error) {
+            console.error("Load Stats Error:", error);
+        }
+    }
+
+
+    async function loadUserCount() {
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/auth/count"
+            );
+
+            const data = await response.json();
+
+            document.getElementById("totalUsers").textContent =
+                data.totalUsers;
+
+        } catch (error) {
+            console.error("User Count Error:", error);
+        }
+    }
+
+
+    loadStats();
+    loadUserCount();
+</script>
+</body>
+</html>

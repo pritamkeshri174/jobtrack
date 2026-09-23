@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard - JobTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Dashboard Navbar -->
+
+    <header class="dashboard-nav">
+
+        <div class="logo">
+            <span>Job</span>Track
+        </div>
+
+        <div class="user-area">
+
+            <span id="welcomeUser">
+                Welcome 👋
+            </span>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <div class="dashboard-heading">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Track and manage your job applications.
+                </p>
+
+            </div>
+
+            <button
+                class="add-job-btn"
+                id="openModalBtn"
+            >
+                + Add Application
+            </button>
+
+        </div>
+
+
+        <!-- Statistics -->
+
+        <section class="stat-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">📋</div>
+
+                <div>
+                    <span>Total Applications</span>
+                    <h2 id="totalJobs">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">📨</div>
+
+                <div>
+                    <span>Applied</span>
+                    <h2 id="appliedJobs">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🎯</div>
+
+                <div>
+                    <span>Interviews</span>
+                    <h2 id="interviewJobs">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🏆</div>
+
+                <div>
+                    <span>Selected</span>
+                    <h2 id="selectedJobs">0</h2>
+                </div>
+
+            </div>
+
+        </section>
+             <!-- Application Status Chart -->
+
+<section class="chart-section">
+
+    <div class="chart-header">
+        <h2>Application Overview</h2>
+        <p>Track your application status.</p>
+    </div>
+
+    <div class="chart-container">
+
+        <div class="chart-bar">
+            <span>📨 Applied</span>
+            <div class="bar">
+                <div id="appliedBar"></div>
+            </div>
+            <strong id="appliedCount">0</strong>
+        </div>
+
+        <div class="chart-bar">
+            <span>🎯 Interview</span>
+            <div class="bar">
+                <div id="interviewBar"></div>
+            </div>
+            <strong id="interviewCount">0</strong>
+        </div>
+
+        <div class="chart-bar">
+            <span>🏆 Selected</span>
+            <div class="bar">
+                <div id="selectedBar"></div>
+            </div>
+            <strong id="selectedCount">0</strong>
+        </div>
+
+        <div class="chart-bar">
+            <span>❌ Rejected</span>
+            <div class="bar">
+                <div id="rejectedBar"></div>
+            </div>
+            <strong id="rejectedCount">0</strong>
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- Search -->
+
+        <section class="application-section">
+
+            <div class="section-top">
+
+                <div>
+
+                    <h2>My Applications</h2>
+
+                    <p>
+                        Manage your job applications.
+                    </p>
+
+                </div>
+
+                <div class="search-area">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search company..."
+                    >
+
+                    <select id="statusFilter">
+
+                        <option value="All">
+                            All Status
+                        </option>
+
+                        <option value="Applied">
+                            Applied
+                        </option>
+
+                        <option value="Interview">
+                            Interview
+                        </option>
+
+                        <option value="Selected">
+                            Selected
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Table -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="jobTableBody">
+
+                        <!-- Jobs will appear here -->
+
+                    </tbody>
+
+                </table>
+
+                <div
+                    id="emptyMessage"
+                    class="empty-message"
+                >
+                    No applications found.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Add Job Modal -->
+
+    <div
+        class="modal"
+        id="jobModal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add Job Application
+                </h2>
+
+                <button id="closeModalBtn">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="jobForm">
+
+                <input
+                    type="hidden"
+                    id="editJobId"
+                >
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Company</label>
+
+                        <input
+                            type="text"
+                            id="company"
+                            placeholder="e.g. TCS"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Position</label>
+
+                        <input
+                            type="text"
+                            id="position"
+                            placeholder="e.g. Software Developer"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Location</label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="e.g. Bangalore"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Job Type</label>
+
+                        <select id="jobType">
+
+                            <option>
+                                Full Time
+                            </option>
+
+                            <option>
+                                Part Time
+                            </option>
+
+                            <option>
+                                Internship
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Status</label>
+
+                        <select id="status">
+
+                            <option>
+                                Applied
+                            </option>
+
+                            <option>
+                                Interview
+                            </option>
+
+                            <option>
+                                Selected
+                            </option>
+
+                            <option>
+                                Rejected
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Salary</label>
+
+                        <input
+                            type="text"
+                            id="salary"
+                            placeholder="e.g. 5 LPA"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Notes</label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Add some notes..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-btn"
+                >
+                    Save Application
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+      <!-- View Details Modal -->
+<div class="modal" id="viewModal">
+
+    <div class="modal-content view-modal-content">
+
+        <div class="modal-header">
+            <h2>Application Details</h2>
+
+            <button id="closeViewModalBtn">×</button>
+        </div>
+
+        <div class="view-details">
+
+            <div class="detail-item">
+                <span>🏢 Company</span>
+                <strong id="viewCompany">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>💼 Position</span>
+                <strong id="viewPosition">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>📍 Location</span>
+                <strong id="viewLocation">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>⏰ Job Type</span>
+                <strong id="viewJobType">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>📊 Status</span>
+                <strong id="viewStatus">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>💰 Salary</span>
+                <strong id="viewSalary">-</strong>
+            </div>
+
+            <div class="detail-item">
+                <span>📅 Applied On</span>
+                <strong id="viewDate">-</strong>
+            </div>
+
+            <div class="detail-notes">
+                <span>📝 Notes</span>
+                <p id="viewNotes">No notes added.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        <!-- Toast Notification -->
+
+            <div id="toast" class="toast">
+                <span id="toastIcon">✅</span>
+                <span id="toastMessage">Success!</span>
+            </div>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

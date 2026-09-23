@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account - JobTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="favicon.ico.png"
+    >
+
+</head>
+
+<body class="auth-body">
+
+    <div class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+                <span>Job</span>Track
+            </div>
+
+            <h1>Create Account 🚀</h1>
+
+            <p class="auth-subtitle">
+                Start tracking your career journey today.
+            </p>
+
+
+            <!-- REGISTER FORM -->
+
+            <form id="registerForm">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                    <label class="show-password">
+                        <input
+                            type="checkbox"
+                            onclick="togglePassword('registerPassword')"
+                        >
+                        Show Password
+                    </label>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+
+                    <label class="show-password">
+                        <input
+                            type="checkbox"
+                            onclick="togglePassword('confirmPassword')"
+                        >
+                        Show Password
+                    </label>
+
+                </div>
+
+
+                <!-- SUBMIT BUTTON -->
+
+                <button
+                    type="submit"
+                    class="auth-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+
+            <p class="auth-footer">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>
