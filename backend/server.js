@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 
 const authRoutes = require("./authRoutes");
 const jobRoutes = require("./routes/jobRoutes");
-const Job = require("./models/Job");
+const job = require("./models/job"); 
 
 const app = express();
 
